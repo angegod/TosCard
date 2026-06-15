@@ -1,0 +1,194 @@
+.Card {
+  @apply relative w-full pb-10;
+  min-height: 800px;
+  height: calc(100% + 50px);
+  background-image: linear-gradient(to bottom, rgb(27, 25, 25) 0%, rgb(65, 28, 28) 70%, rgb(102, 12, 12) 90%);
+}
+
+.rarity {
+   @apply opacity-60;
+
+   &:hover,&.clicked{
+      @apply opacity-100
+   }
+
+   & img:nth-child(2){
+      @apply hidden;
+   }
+   &.clicked img:nth-child(2){
+      @apply block;
+   }
+}
+
+
+  // === 變數設定 === //
+  $color-gray: #9ca3af; // theme('colors.gray.400')
+  $color-black: #000000; // theme('colors.black')
+  $color-white: #ffffff; // theme('colors.white')
+  $color-amber: #f59e0b; // theme('colors.amber.500')
+
+  $font-base: 1rem;      // theme('fontSize.base')
+  $font-xl: 1.25rem;     // theme('fontSize.xl')
+  $radius-md: 0.375rem;  // theme('borderRadius.md')
+
+  // === 按鈕樣式 === //
+  .btn {
+    @apply text-stone-400 border-stone-400;
+    font-size: $font-xl;
+    border: 2px solid $color-gray;
+    border-radius: $radius-md;
+
+    &:hover {
+        color: $color-white;
+        border-color: $color-white;
+    }
+
+    &.clicked {
+        color: $color-amber;
+        border-color: $color-amber;
+    }
+
+    &.small {
+        font-size: $font-base;
+    }
+  }
+
+  // === 搜尋按鈕 === //
+  .searchBtn {
+    color: $color-black;
+    font-size: $font-xl;
+    border: 2px solid currentColor; // 自動使用文字顏色
+    border-radius: $radius-md;
+  }
+
+
+  .condBtn {
+    font-size: 20px;
+    color: #78350f; /* theme('colors.amber.900') */
+    background-color: #ffffff; /* theme('colors.white') */
+    border-radius: 0.375rem; /* theme('borderRadius.md') */
+    transition: 0.3s linear;
+    font-weight: 500;
+    font-family: "Gill Sans", sans-serif;
+  }
+
+  .condBtn:hover,
+  .condBtn.clicked {
+    background-color: #78350f; /* theme('colors.amber.900') */
+    color: #ffffff; /* theme('colors.white') */
+  }
+
+
+
+.overlay {
+    @apply h-auto fixed hidden inset-0 bg-black/80 z-[999];
+}
+
+
+.close {
+    @apply sticky top-0.5 left-[100%] w-[25px] h-[25px] cursor-pointer;
+    @apply text-black inline-block;
+}
+
+.popup {
+    @apply absolute w-1/2 max-w-[600px] h-[500px] top-[10%] left-0 right-0 mx-auto;
+    @apply rounded-[10px] bg-white overflow-y-scroll;
+    box-shadow: 0px 0px 10px 0px black;
+    animation: slideshow 0.3s ease-in;
+    min-width: 320px;
+    scrollbar-width: none;
+}
+
+.popup.calculator{
+    @apply w-1/5 h-[400px];
+    min-width: 350px;
+}
+
+.spread{
+    width: 240px; /* 棋子盘宽度压缩到200px */
+    height: 200px; /* 按比例设定的高度 */
+    background-image: url('https://angegod.github.io/vuepage/images/card/spread/base.png');
+    background-size: 160px 160px;
+    background-repeat: repeat;
+}
+
+.line::after{
+    display: flex;
+    content: "";
+    width: 90%;
+    border-top: 2px dotted rgba(0, 0, 0, 0.12);
+    align-items: center;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 5px;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: all 0.3s ease;
+}
+.fade-enter-from, .fade-leave-to {
+  opacity: 0;
+  transform: translateY(-5px);
+}
+
+.imgbox1{
+    animation: rarity1_blink infinite 3s ease-in;
+}
+
+.imgbox2{
+    animation: rarity2_blink infinite 3s ease-in;
+}
+
+.imgbox3{
+    animation: rarity3_blink infinite 3s ease-in;
+}
+
+@media (max-width:600px){
+    .btn{
+        font-size: 1rem;
+    }
+}
+
+
+@keyframes slideshow{
+    from {max-height: 0;}
+    to {max-height: 500px;}
+}
+
+@keyframes rarity3_blink{
+    0%{
+        box-shadow:0px 1px 5px 5px orange ;
+    }
+    50%{
+        box-shadow:0px 1px 5px 8px rgba(255, 166, 0, 0.6);
+    }
+
+    100%{
+        box-shadow:0px 1px 5px 5px orange ;
+    }
+}
+
+@keyframes rarity2_blink{
+    0%{
+        box-shadow:0px 1px 10px 5px  rgba(84, 80, 80, 0.8);
+    }
+    50%{
+        box-shadow:0px 1px 3px 8px rgba(84, 80, 80,0);
+    }
+
+    100%{
+        box-shadow:0px 1px 10px 5px rgba(84, 80, 80,0.8);
+    }
+}
+@keyframes rarity1_blink{
+    0%{
+        box-shadow:0px 1px 5px 5px  brown;
+    }
+    50%{
+        box-shadow:0px 1px 5px 8px rgba(165, 42, 42, 0.4);
+    }
+
+    100%{
+        box-shadow:0px 1px 5px 5px brown ;
+    }
+}
