@@ -7,7 +7,7 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "predeploy": "nuxt generate",
-    "deploy": "gh-pages -d .output/public -b gh-pages --dotfiles",
+    "deploy": "gh-pages -d .output/public -b gh-pages --dotfiles -f",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
   },
@@ -24,6 +24,7 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.11",
+    "@types/node": "^26.0.0",
     "autoprefixer": "^10.4.21",
     "gh-pages": "^6.3.0",
     "postcss-nesting": "^13.0.2",
