@@ -4,6 +4,10 @@ export const useCardBtnStore = defineStore('CardButton', {
     state: () => ({
         //控制頂端按鈕顯示與否
         Cardbutton:true,
+        //控制搜尋模式，true為條件搜尋，false為文字搜尋
+        TextOrCondition:true,
+        //計算器模式
+        CalculateMode:false,
         isMatch:false
     }),
     actions: {

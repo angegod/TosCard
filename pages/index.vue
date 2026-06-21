@@ -445,6 +445,8 @@
     };
 
     let stopWatcher: (() => void) | null = null;
+    let searchModeWatcher: (() => void) | null = null;
+    let calculateModeWatcher: (() => void) | null = null;
 
     onMounted(() => {
         isAddable.value = inject('frontpath') as string;
@@ -464,6 +466,20 @@
                 }
             }
         );
+
+        searchModeWatcher = watch(
+            () => store.TextOrCondition,
+            () => {
+                TextOrCondition();
+            }
+        );
+
+        calculateModeWatcher = watch(
+            () => store.CalculateMode,
+            () => {
+                callcalculator();
+            }
+        );
     });
 
     onUnmounted(() => {
@@ -477,15 +493,6 @@
 <template>
     <client-only>
         <div class="Card [&>div]:w-4/5 [&>div]:mx-auto max-[500px]:[&>div]:w-5/6 pt-3" >
-            <div class="flex flex-row flex-wrap justify-between max-[400px]:flex-col">
-                <div class="flex flex-row max-[350px]:flex-col">
-                    <h1 class="text-[28px] font-bold text-red-600 mr-3">時光牌圖鑑</h1>
-                    <Switch ref="b1" @refresh="TextOrCondition" :text1="'條件搜尋'" :text2="'文字搜尋'"/>
-                </div>
-                <div class="max-[500px]:w-full">
-                    <button type="button" class="text-white border-b-white border-b-[1px]" @click="callcalculator">琉璃計算器</button>
-                </div>
-            </div>
             <div v-if="!isInput">
                 <div class="flex flex-col flex-wrap w-full mt-5">
                     <div>

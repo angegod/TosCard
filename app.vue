@@ -86,35 +86,31 @@ function addDash(index:number) {
     document.getElementById('headerMenu')?.classList.remove('expand')
 }
 
-const startMatch = () => {
-    //eventBus.emit('callsetData');
+function startMatch() {
     store.StartMatch();
 }
+
+function changeSearchMode() {
+    store.TextOrCondition = !store.TextOrCondition;
+}
+
+function callcalculator() {
+    store.CalculateMode = !store.CalculateMode;
+}
+
 
 </script>
 <template>
    <header class="header">
-        <div class="menu hidden flex-row justify-between min-[600px]:flex" id="biggerHeader">
-            <div class="[&>a]:text-[25px] options link redText" @click="addDash(1)">
-                <NuxtLink to="/" >時光牌</NuxtLink>
+        <div class="menu flex flex-row justify-between max-[700px]:flex-col" id="biggerHeader">
+            <div class="flex flex-row max-[350px]:flex-col">
+                <h1 class="text-[28px] font-bold text-red-600 mr-3">時光牌圖鑑</h1>
+                <Switch ref="b1" @refresh="changeSearchMode" :text1="'條件搜尋'" :text2="'文字搜尋'"/>
             </div>
-            <div class="!p-0 !flex" v-if="showCardBtn">
+            <div class="!p-0 !flex gap-2 items-center" v-if="showCardBtn">
                 <button class="searchBtn bg-amber-800 
-                text-white border-amber-800 w-[100px] rounded-md text-xl" @click="startMatch">開始匹配</button>
-            </div>
-        </div>
-        <div class="flex flex-row min-[600px]:hidden w-full justify-between" id="smallHeader">
-            <div class="mt-2 ml-2">
-                <button @click="showMenu"><img :src="isAddable+'/images/menu.svg'" alt="menu" style="width: 25px;"/></button>
-            </div>
-            <div class="subMenu flex flex-col ml-2" id="headerMenu" >
-                <div class="my-2 sublink redText" @click="addDash(1)">
-                    <NuxtLink  to="/" >時光牌</NuxtLink>
-                </div>
-            </div>
-            <div class="!p-0 !flex mr-1" v-if="showCardBtn">
-                <button class="searchBtn bg-amber-800 
-                text-white border-amber-800 w-[100px] rounded-md text-[20px]" @click="startMatch">開始匹配</button>
+                text-white border-amber-800 w-[100px] h-[35px] rounded-md text-xl" @click="startMatch">開始匹配</button>
+                <button type="button" class="text-white border-b-white border-b-[1px] h-min" @click="callcalculator">琉璃計算器</button>
             </div>
         </div>
     </header>
