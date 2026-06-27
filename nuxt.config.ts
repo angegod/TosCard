@@ -24,8 +24,13 @@ export default defineNuxtConfig({
         baseURL: process.env.NODE_ENV === 'production' ? '/TosCard/' : '/',
         head: {
             link: [
-              { rel: 'icon', type: 'image/x-icon', href: '/TosCard/favicon.ico' }, // 預設格式
+                {
+                  rel: 'icon',
+                  type: 'image/x-icon',
+                  href: 'favicon.ico' // 或 '/favicon.ico'
+                }
             ]
         }
-    },
+    }
+  
 })
