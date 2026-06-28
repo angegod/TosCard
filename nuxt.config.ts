@@ -27,7 +27,7 @@ export default defineNuxtConfig({
                 {
                   rel: 'icon',
                   type: 'image/x-icon',
-                  href: 'favicon.ico' // 或 '/favicon.ico'
+                  href: `${process.env.NODE_ENV === 'production' ? '/TosCard/' : '/'}favicon.ico`
                 }
             ]
         }
